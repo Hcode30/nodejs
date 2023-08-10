@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export function ConnectToDB(DatabaseUrl) {
+export default function ConnectToDB(DatabaseUrl) {
   mongoose
     .connect(DatabaseUrl, {
       useUnifiedTopology: true,

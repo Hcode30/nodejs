@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 
 //  ===== Local Imports =====
 
-import { ConnectToDB } from './config/Database.js';
+import ConnectToDB from './config/Database.js';
 
 import runServer from './server/runServer.js';
 
@@ -17,7 +17,7 @@ import routerAccess from './routes/categoryRoute.js';
 
 import ApiError from './utils/apiError.js';
 
-import { globalError } from './middleWares/errorMiddleWare.js';
+import globalError from './middleWares/errorMiddleWare.js';
 
 //  ===== Initiate Express App =====
 

@@ -6,7 +6,7 @@ export const validateMiddleware = AsyncHandler((req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(
-      new ApiError(errors.array({ onlyFirstError: true })[0].msg, 404)
+      new ApiError(errors.array({ onlyFirstError: true })[0].msg, 400)
     );
   }
   next();

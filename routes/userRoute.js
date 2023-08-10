@@ -8,21 +8,31 @@ import {
   unAuth,
   unAuthForDevs,
 } from '../services/userService.js';
-
-import { IdValidator } from '../utils/validators/idValidation.js';
+import {
+  createValidator,
+  getValidator,
+  updateValidator,
+  deleteValidator,
+} from '../utils/validators/userValidators.js';
 
 export function routerAccess(Router, Mode) {
   if (Mode === 'Development') {
-    Router.route('/').get(getUsers).post(createUser).delete(deleteAllUsers);
+    Router.route('/')
+      .get(getUsers)
+      .post(createValidator, createUser)
+      .delete(deleteAllUsers);
     Router.route('/:id')
-      .get(IdValidator, getUser)
-      .put(IdValidator, updateUser)
-      .delete(IdValidator, deleteUser);
+      .get(getValidator, getUser)
+      .put(updateValidator, updateUser)
+      .delete(deleteValidator, deleteUser);
   } else if (Mode === 'Production') {
-    Router.route('/').get(getUsers).post(createUser).delete(unAuthForDevs);
+    Router.route('/')
+      .get(getUsers)
+      .post(createValidator, createUser)
+      .delete(unAuthForDevs);
     Router.route('/:id')
-      .get(IdValidator, getUser)
-      .put(IdValidator, updateUser)
+      .get(getValidator, getUser)
+      .put(updateValidator, updateUser)
       .delete(unAuthForDevs);
   } else {
     Router.route('/').get(unAuth).post(unAuth).delete(unAuth);

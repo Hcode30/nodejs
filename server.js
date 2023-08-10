@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 //  ===== Global Imports =====
 
 import express from 'express';
@@ -8,13 +9,13 @@ import dotenv from 'dotenv';
 
 import { ConnectToDB } from './config/Database.js';
 
-import { runServer } from './server/runServer.js';
+import runServer from './server/runServer.js';
 
-import { getConfig } from './server/serverConfig.js';
+import getConfig from './server/serverConfig.js';
 
-import { routerAccess } from './routes/categoryRoute.js';
+import routerAccess from './routes/categoryRoute.js';
 
-import { ApiError } from './utils/apiError.js';
+import ApiError from './utils/apiError.js';
 
 import { globalError } from './middleWares/errorMiddleWare.js';
 
@@ -30,10 +31,10 @@ const router = express.Router();
 
 dotenv.config({ path: './config.env' });
 
-export const MODE = process.env.NODE_ENV;
-const DEV_PORT = process.env.DEV_PORT;
-const PROD_PORT = process.env.PROD_PORT;
-const DB_URL = process.env.DB_URL;
+const MODE = process.env.NODE_ENV;
+const { DEV_PORT } = process.env;
+const { PROD_PORT } = process.env;
+const { DB_URL } = process.env;
 
 //  ===== Connect To Database =====
 
@@ -70,8 +71,8 @@ app.use(globalError);
 
 //  ===== Run The Server =====
 
-let config = getConfig(app, MODE, DEV_PORT, PROD_PORT);
-let server = runServer(app, config.port, config.mode);
+const config = getConfig(app, MODE, DEV_PORT, PROD_PORT);
+const server = runServer(app, config.port, config.mode);
 
 // ===== Handle Promises Errors =====
 

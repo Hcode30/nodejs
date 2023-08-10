@@ -12,7 +12,7 @@ import { runServer } from './server/runServer.js';
 
 import { getConfig } from './server/serverConfig.js';
 
-import { routerAccess } from './routes/userRoute.js';
+import { routerAccess } from './routes/categoryRoute.js';
 
 import { ApiError } from './utils/apiError.js';
 
@@ -55,7 +55,7 @@ app.get('/', (req, res) => {
 
 // Operate On Used Routes
 
-app.use('/api/v1/users', router);
+app.use('/api/v1/categories', router);
 routerAccess(router, MODE);
 
 // Operate On Unused Routes

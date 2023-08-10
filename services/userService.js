@@ -4,12 +4,8 @@ import slugify from 'slugify';
 
 import AsyncHandler from 'express-async-handler';
 
-import { body, validationResult } from 'express-validator';
-
 //  ===== Local Imports =====
-
 import { User } from '../models/userModel.js';
-
 import { ApiError } from '../utils/apiError.js';
 
 // @desc     Creates A new User
@@ -17,15 +13,14 @@ import { ApiError } from '../utils/apiError.js';
 // @access   Private
 
 export const createUser = AsyncHandler(async (req, res) => {
-  // const body = await req.body;
-  const userObj = {
-    name: body('name').isString(),
-    age: body('age').isNumeric({ no_symbols: true }),
-    email: body('email').isEmail(),
-    image: body('image').isURL(),
-    slug: slugify(body('name')),
-  };
-  const user = await User.create(userObj);
+  const body = await req.body;
+  const user = await User.create({
+    name: body.name,
+    age: body.age,
+    email: body.email,
+    image: body.image,
+    slug: slugify(body.name),
+  });
   res.status(201).json({ data: user });
 });
 

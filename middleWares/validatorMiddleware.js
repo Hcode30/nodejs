@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import AsyncHandler from 'express-async-handler';
 import { validationResult } from 'express-validator';
 import ApiError from '../utils/apiError.js';

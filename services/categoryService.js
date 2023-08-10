@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 //  ===== Global Imports =====
 
 import slugify from 'slugify';

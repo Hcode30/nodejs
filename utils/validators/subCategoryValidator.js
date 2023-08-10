@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import { param, body } from 'express-validator';
 import validateMiddleware from '../../middleWares/validatorMiddleware.js';
 
